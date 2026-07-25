@@ -10,10 +10,11 @@ export const metadata: Metadata = {
     default: "Acme Dashboard",
     template: "%s | Acme Dashboard",
   },
-  description: "Acme Dashboard built with Next.js App Router.",
+  description: "The official Next.js Course Dashboard, built with App Router.",
   openGraph: {
     title: "Acme Dashboard",
-    description: "Acme Dashboard built with Next.js App Router.",
+    description:
+      "The official Next.js Course Dashboard, built with App Router.",
     type: "website",
     images: [
       {
@@ -27,7 +28,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Acme Dashboard",
-    description: "Acme Dashboard built with Next.js App Router.",
+    description:
+      "The official Next.js Course Dashboard, built with App Router.",
     images: ["/ogp-image.png"],
   },
 };
