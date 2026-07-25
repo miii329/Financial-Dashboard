@@ -6,9 +6,18 @@ import type { User } from "@/app/lib/definitions";
 import bcrypt from "bcrypt";
 import postgres from "postgres";
 
-const postgresUrl = process.env.POSTGRES_URL!;
+const postgresUrl =
+  process.env.POSTGRES_URL ?? process.env["nextjs_dashboard_POSTGRES_URL"];
+
+if (!postgresUrl) {
+  throw new Error(
+    "Database URL is missing. Set POSTGRES_URL or nextjs_dashboard_POSTGRES_URL.",
+  );
+}
+
 const isLocalDatabase =
   postgresUrl.includes("localhost") || postgresUrl.includes("127.0.0.1");
+const sql = postgres(postgresUrl, { ssl: isLocalDatabase ? false : "require" });
 const sql = postgres(postgresUrl, { ssl: isLocalDatabase ? false : "require" });
 
 async function getUser(email: string): Promise<User | undefined> {
