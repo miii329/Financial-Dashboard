@@ -18,7 +18,6 @@ if (!postgresUrl) {
 const isLocalDatabase =
   postgresUrl.includes("localhost") || postgresUrl.includes("127.0.0.1");
 const sql = postgres(postgresUrl, { ssl: isLocalDatabase ? false : "require" });
-const sql = postgres(postgresUrl, { ssl: isLocalDatabase ? false : "require" });
 
 async function getUser(email: string): Promise<User | undefined> {
   try {
