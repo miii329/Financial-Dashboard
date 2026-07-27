@@ -7,29 +7,27 @@ const siteUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Acme Dashboard",
-    template: "%s | Acme Dashboard",
+    default: "Acme ダッシュボード",
+    template: "%s | Acme ダッシュボード",
   },
-  description: "The official Next.js Course Dashboard, built with App Router.",
+  description: "App Router で作られた Next.js Course のダッシュボードです。",
   openGraph: {
-    title: "Acme Dashboard",
-    description:
-      "The official Next.js Course Dashboard, built with App Router.",
+    title: "Acme ダッシュボード",
+    description: "App Router で作られた Next.js Course のダッシュボードです。",
     type: "website",
     images: [
       {
         url: "/ogp-image.png",
         width: 1200,
         height: 630,
-        alt: "Acme Dashboard preview image",
+        alt: "Acme ダッシュボードのプレビュー画像",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Acme Dashboard",
-    description:
-      "The official Next.js Course Dashboard, built with App Router.",
+    title: "Acme ダッシュボード",
+    description: "App Router で作られた Next.js Course のダッシュボードです。",
     images: ["/ogp-image.png"],
   },
 };
@@ -40,7 +38,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="ja">
       <body className={`${inter.className} antialiased`}>{children}</body>
     </html>
   );

@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import postgres from "postgres";
 import { signIn } from "@/auth";
 import { AuthError } from "next-auth";
+import { getLocale, localizedPath, type Locale } from "@/app/lib/i18n";
 
 const postgresUrl =
   process.env.POSTGRES_URL ?? process.env["nextjs_dashboard_POSTGRES_URL"];
@@ -51,6 +52,7 @@ export async function createInvoice(
   prevState: State,
   formData: FormData,
 ): Promise<State> {
+  const locale = getLocale(formData.get("locale")?.toString());
   const validatedFields = CreateInvoice.safeParse({
     customerId: formData.get("customerId"),
     amount: formData.get("amount"),
@@ -80,11 +82,12 @@ export async function createInvoice(
     };
   }
 
-  revalidatePath("/dashboard/invoices");
-  redirect("/dashboard/invoices");
+  revalidatePath(localizedPath(locale, "/dashboard/invoices"));
+  redirect(localizedPath(locale, "/dashboard/invoices"));
 }
 
 export async function updateInvoice(id: string, formData: FormData) {
+  const locale = getLocale(formData.get("locale")?.toString());
   const { customerId, amount, status } = UpdateInvoice.parse({
     customerId: formData.get("customerId"),
     amount: formData.get("amount"),
@@ -105,28 +108,31 @@ export async function updateInvoice(id: string, formData: FormData) {
     throw new Error("Database Error: Failed to Update Invoice.");
   }
 
-  revalidatePath("/dashboard/invoices");
-  redirect("/dashboard/invoices");
+  revalidatePath(localizedPath(locale, "/dashboard/invoices"));
+  redirect(localizedPath(locale, "/dashboard/invoices"));
 }
 
-export async function deleteInvoice(id: string) {
+export async function deleteInvoice(id: string, locale: Locale) {
   await sql`DELETE FROM invoices WHERE id = ${id}`;
-  revalidatePath("/dashboard/invoices");
+  revalidatePath(localizedPath(locale, "/dashboard/invoices"));
 }
 
 export async function authenticate(
   prevState: string | undefined,
   formData: FormData,
 ) {
+  const locale = getLocale(formData.get("locale")?.toString());
   try {
     await signIn("credentials", formData);
   } catch (error) {
     if (error instanceof AuthError) {
       switch (error.type) {
         case "CredentialsSignin":
-          return "Invalid credentials.";
+          return locale === "ja"
+            ? "認証情報が正しくありません。"
+            : "Invalid credentials.";
         default:
-          return "Something went wrong.";
+          return locale === "ja" ? "問題が発生しました。" : "Something went wrong.";
       }
     }
     throw error;

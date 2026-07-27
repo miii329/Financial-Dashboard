@@ -1,8 +1,13 @@
 import AcmeLogo from "@/app/ui/acme-logo";
 import LoginForm from "@/app/ui/login-form";
+import { getDictionary, getLocale } from "@/app/lib/i18n";
 import { Suspense } from "react";
 
-export default function LoginPage() {
+export default async function LoginPage(props: { params: Promise<{ lang: string }> }) {
+  const { lang } = await props.params;
+  const locale = getLocale(lang);
+  const dict = getDictionary(locale);
+
   return (
     <main className="flex items-center justify-center md:h-screen">
       <div className="relative mx-auto flex w-full max-w-[400px] flex-col space-y-2.5 p-4 md:-mt-32">
@@ -12,7 +17,7 @@ export default function LoginPage() {
           </div>
         </div>
         <Suspense>
-          <LoginForm />
+          <LoginForm locale={locale} labels={dict.login} />
         </Suspense>
       </div>
     </main>
