@@ -52,6 +52,7 @@ export const dictionaries = {
       heroMobileAlt: "モバイル版のダッシュボード画面",
     },
     nav: {
+      appTitle: "財務管理ダッシュボード",
       home: "ホーム",
       invoices: "請求書",
       customers: "顧客",
@@ -127,6 +128,7 @@ export const dictionaries = {
       heroMobileAlt: "Screenshots of the dashboard project showing mobile version",
     },
     nav: {
+      appTitle: "Financial Management Dashboard",
       home: "Home",
       invoices: "Invoices",
       customers: "Customers",
