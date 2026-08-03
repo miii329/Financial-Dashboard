@@ -40,22 +40,18 @@ export function localizedPath(locale: Locale, path: string) {
 export const dictionaries = {
   ja: {
     metadata: {
-      title: "Acme ダッシュボード",
-      description:
-        "App Router で作られた Next.js Course のダッシュボードです。",
+      title: "財務情報管理ダッシュボード",
+      description: "これは財務情報を管理するダッシュボードです。",
       previewAlt: "Acme ダッシュボードのプレビュー画像",
     },
     home: {
-      welcomeStrong: "Acme へようこそ。",
-      welcomeText:
-        "これは Vercel が提供する Next.js Learn Course のサンプルです。",
-      courseLink: "Next.js Learn Course",
+      welcomeText: "これは財務情報を管理するダッシュボードです。",
       login: "ログイン",
       heroDesktopAlt: "デスクトップ版のダッシュボード画面",
       heroMobileAlt: "モバイル版のダッシュボード画面",
     },
     nav: {
-      appTitle: "財務管理ダッシュボード",
+      appTitle: "財務情報管理ダッシュボード",
       home: "ホーム",
       invoices: "請求書",
       customers: "顧客",
@@ -123,16 +119,14 @@ export const dictionaries = {
   },
   en: {
     metadata: {
-      title: "Acme Dashboard",
+      title: "Financial Management Dashboard",
       description:
-        "The official Next.js Course Dashboard, built with App Router.",
+        "A dashboard for efficiently managing and analyzing financial information.",
       previewAlt: "Acme Dashboard preview image",
     },
     home: {
-      welcomeStrong: "Welcome to Acme.",
       welcomeText:
-        "This is the example for the Next.js Learn Course, brought to you by Vercel.",
-      courseLink: "Next.js Learn Course",
+        "Welcome to the Financial Management Dashboard, where you can efficiently manage and analyze your financial information.",
       login: "Log in",
       heroDesktopAlt:
         "Screenshots of the dashboard project showing desktop version",
