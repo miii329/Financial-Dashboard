@@ -1,14 +1,21 @@
 import { Metadata } from "next";
-import { getDictionary, getLocale } from "@/app/lib/i18n";
+import { fetchFilteredCustomers } from "@/app/lib/data";
+import CustomersTable from "@/app/ui/customers/table";
 
 export const metadata: Metadata = {
   title: "Customers | Acme Dashboard",
 };
 
-export default async function Page(props: { params: Promise<{ lang: string }> }) {
-  const { lang } = await props.params;
-  const locale = getLocale(lang);
-  const dict = getDictionary(locale);
+export const dynamic = "force-dynamic";
 
-  return <p>{dict.customers.page}</p>;
+export default async function Page(props: {
+  params: Promise<{ lang: string }>;
+}) {
+  await props.params;
+  const customers = await fetchFilteredCustomers("");
+  const pastCustomers = customers.filter(
+    (customer) => Number(customer.total_invoices) > 0,
+  );
+
+  return <CustomersTable customers={pastCustomers} />;
 }

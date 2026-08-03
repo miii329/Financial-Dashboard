@@ -13,7 +13,9 @@ import { getDictionary, getLocale } from "@/app/lib/i18n";
 
 export const dynamic = "force-dynamic";
 
-export default async function Page(props: { params: Promise<{ lang: string }> }) {
+export default async function Page(props: {
+  params: Promise<{ lang: string }>;
+}) {
   const { lang } = await props.params;
   const locale = getLocale(lang);
   const dict = getDictionary(locale);
@@ -30,17 +32,30 @@ export default async function Page(props: { params: Promise<{ lang: string }> })
       <h1 className={`${lusitana.className} mb-4 text-xl md:text-2xl`}>
         {dict.dashboard.title}
       </h1>
+      <p>月次</p>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-        <Card title={dict.dashboard.collected} value={totalPaidInvoices} type="collected" />
-        <Card title={dict.dashboard.pending} value={totalPendingInvoices} type="pending" />
-        <Card title={dict.dashboard.totalInvoices} value={numberOfInvoices} type="invoices" />
+        <Card
+          title={dict.dashboard.collected}
+          value={totalPaidInvoices}
+          type="collected"
+        />
+        <Card
+          title={dict.dashboard.pending}
+          value={totalPendingInvoices}
+          type="pending"
+        />
+        <Card
+          title={dict.dashboard.totalInvoices}
+          value={numberOfInvoices}
+          type="invoices"
+        />
         <Card
           title={dict.dashboard.totalCustomers}
           value={numberOfCustomers}
           type="customers"
         />
       </div>
-      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4 lg:grid-cols-8">
+      <div className="mt-6 grid grid-cols-1 gap-6 md:grid-cols-4">
         <Suspense fallback={<RevenueChartSkeleton />}>
           <RevenueChart
             revenue={revenue}
@@ -49,6 +64,8 @@ export default async function Page(props: { params: Promise<{ lang: string }> })
             footerText={dict.dashboard.last12Months}
           />
         </Suspense>
+      </div>
+      <div className="mt-6">
         <LatestInvoices
           latestInvoices={latestInvoices}
           title={dict.dashboard.latestInvoices}
