@@ -24,6 +24,7 @@ export default function Form({
 }) {
   const initialState: State = { message: null, errors: {} };
   const [state, formAction] = useActionState(createInvoice, initialState);
+  const today = new Date().toISOString().split("T")[0];
   return (
     <form action={formAction}>
       <input type="hidden" name="locale" value={locale} />
@@ -80,6 +81,22 @@ export default function Form({
               />
               <CurrencyDollarIcon className="pointer-events-none absolute left-3 top-1/2 h-[18px] w-[18px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
             </div>
+          </div>
+        </div>
+
+        {/* Invoice Date */}
+        <div className="mb-4">
+          <label htmlFor="date" className="mb-2 block text-sm font-medium">
+            {labels.date}
+          </label>
+          <div className="relative mt-2 rounded-md">
+            <input
+              id="date"
+              name="date"
+              type="date"
+              defaultValue={today}
+              className="peer block w-full rounded-md border border-gray-200 py-2 pl-10 text-sm outline-2 placeholder:text-gray-500"
+            />
           </div>
         </div>
 

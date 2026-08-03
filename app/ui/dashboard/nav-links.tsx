@@ -4,6 +4,7 @@ import {
   UserGroupIcon,
   HomeIcon,
   DocumentDuplicateIcon,
+  ChartBarIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -20,6 +21,7 @@ const links = [
     icon: DocumentDuplicateIcon,
   },
   { labelKey: "customers", href: "/dashboard/customers", icon: UserGroupIcon },
+  { labelKey: "revenue", href: "/dashboard/revenue", icon: ChartBarIcon },
 ] as const;
 
 export default function NavLinks({ locale }: { locale: Locale }) {

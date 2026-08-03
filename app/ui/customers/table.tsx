@@ -1,10 +1,10 @@
-import Image from 'next/image';
-import { lusitana } from '@/app/ui/fonts';
-import Search from '@/app/ui/search';
+import Image from "next/image";
+import { lusitana } from "@/app/ui/fonts";
+import Search from "@/app/ui/search";
 import {
   CustomersTableType,
   FormattedCustomersTable,
-} from '@/app/lib/definitions';
+} from "@/app/lib/definitions";
 
 export default async function CustomersTable({
   customers,
@@ -16,6 +16,9 @@ export default async function CustomersTable({
       <h1 className={`${lusitana.className} mb-8 text-xl md:text-2xl`}>
         Customers
       </h1>
+      <p className="text-sm text-gray-500 mb-4">
+        過去に登場した顧客数: {customers.length}
+      </p>
       <Search placeholder="Search customers..." />
       <div className="mt-6 flow-root">
         <div className="overflow-x-auto">

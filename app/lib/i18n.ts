@@ -27,7 +27,8 @@ export function stripLocale(pathname: string) {
 
   return {
     locale: maybeLocale,
-    pathname: pathWithoutLocale === "/" ? "/" : pathWithoutLocale.replace(/\/$/, ""),
+    pathname:
+      pathWithoutLocale === "/" ? "/" : pathWithoutLocale.replace(/\/$/, ""),
   };
 }
 
@@ -39,23 +40,22 @@ export function localizedPath(locale: Locale, path: string) {
 export const dictionaries = {
   ja: {
     metadata: {
-      title: "Acme ダッシュボード",
-      description: "App Router で作られた Next.js Course のダッシュボードです。",
+      title: "財務情報管理ダッシュボード",
+      description: "これは財務情報を管理するダッシュボードです。",
       previewAlt: "Acme ダッシュボードのプレビュー画像",
     },
     home: {
-      welcomeStrong: "Acme へようこそ。",
-      welcomeText: "これは Vercel が提供する Next.js Learn Course のサンプルです。",
-      courseLink: "Next.js Learn Course",
+      welcomeText: "これは財務情報を管理するダッシュボードです。",
       login: "ログイン",
       heroDesktopAlt: "デスクトップ版のダッシュボード画面",
       heroMobileAlt: "モバイル版のダッシュボード画面",
     },
     nav: {
-      appTitle: "財務管理ダッシュボード",
+      appTitle: "財務情報管理ダッシュボード",
       home: "ホーム",
       invoices: "請求書",
       customers: "顧客",
+      revenue: "収益",
       signOut: "ログアウト",
     },
     dashboard: {
@@ -97,6 +97,10 @@ export const dictionaries = {
       title: "顧客",
       page: "顧客ページ",
     },
+    revenue: {
+      title: "収益",
+      page: "収益ページ",
+    },
     login: {
       title: "続けるにはログインしてください。",
       email: "メール",
@@ -115,23 +119,26 @@ export const dictionaries = {
   },
   en: {
     metadata: {
-      title: "Acme Dashboard",
-      description: "The official Next.js Course Dashboard, built with App Router.",
+      title: "Financial Management Dashboard",
+      description:
+        "A dashboard for efficiently managing and analyzing financial information.",
       previewAlt: "Acme Dashboard preview image",
     },
     home: {
-      welcomeStrong: "Welcome to Acme.",
-      welcomeText: "This is the example for the Next.js Learn Course, brought to you by Vercel.",
-      courseLink: "Next.js Learn Course",
+      welcomeText:
+        "Welcome to the Financial Management Dashboard, where you can efficiently manage and analyze your financial information.",
       login: "Log in",
-      heroDesktopAlt: "Screenshots of the dashboard project showing desktop version",
-      heroMobileAlt: "Screenshots of the dashboard project showing mobile version",
+      heroDesktopAlt:
+        "Screenshots of the dashboard project showing desktop version",
+      heroMobileAlt:
+        "Screenshots of the dashboard project showing mobile version",
     },
     nav: {
       appTitle: "Financial Management Dashboard",
       home: "Home",
       invoices: "Invoices",
       customers: "Customers",
+      revenue: "Revenue",
       signOut: "Sign Out",
     },
     dashboard: {
@@ -172,6 +179,10 @@ export const dictionaries = {
     customers: {
       title: "Customers",
       page: "Customers Page",
+    },
+    revenue: {
+      title: "Revenue",
+      page: "Revenue Page",
     },
     login: {
       title: "Please log in to continue.",

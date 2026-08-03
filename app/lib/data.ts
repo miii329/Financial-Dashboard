@@ -66,12 +66,31 @@ export async function fetchCardData() {
     // You can probably combine these into a single SQL query
     // However, we are intentionally splitting them to demonstrate
     // how to initialize multiple queries in parallel with JS.
-    const invoiceCountPromise = sql`SELECT COUNT(*) FROM invoices`;
-    const customerCountPromise = sql`SELECT COUNT(*) FROM customers`;
+    const monthStart = new Date();
+    monthStart.setDate(1);
+    monthStart.setHours(0, 0, 0, 0);
+
+    const nextMonthStart = new Date(monthStart);
+    nextMonthStart.setMonth(nextMonthStart.getMonth() + 1);
+
+    const monthStartDate = monthStart.toISOString().split("T")[0];
+    const nextMonthStartDate = nextMonthStart.toISOString().split("T")[0];
+
+    const invoiceCountPromise = sql`
+      SELECT COUNT(*)
+      FROM invoices
+      WHERE date >= ${monthStartDate} AND date < ${nextMonthStartDate}
+    `;
+    const customerCountPromise = sql`
+      SELECT COUNT(DISTINCT customer_id)
+      FROM invoices
+      WHERE date >= ${monthStartDate} AND date < ${nextMonthStartDate}
+    `;
     const invoiceStatusPromise = sql`SELECT
          SUM(CASE WHEN status = 'paid' THEN amount ELSE 0 END) AS "paid",
          SUM(CASE WHEN status = 'pending' THEN amount ELSE 0 END) AS "pending"
-         FROM invoices`;
+         FROM invoices
+         WHERE date >= ${monthStartDate} AND date < ${nextMonthStartDate}`;
 
     const data = await Promise.all([
       invoiceCountPromise,
